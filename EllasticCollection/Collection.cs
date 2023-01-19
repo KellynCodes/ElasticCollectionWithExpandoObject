@@ -33,37 +33,35 @@ namespace ElasticCollection.Domain
         }
         public static void SelectProductSpecsToView()
         {
-            /*  if (CheckUserChoice.IncludeSpecName() && CheckUserChoice.IncludeSpecPrice() && CheckUserChoice.IncludeSpecCategories() && CheckUserChoice.IncludeSpecOrderCount() && CheckUserChoice.IncludeSpecQuantity())
-              {
-                  ProductDb.TemporalProducts.Add(new Product(ReturnSpecs.GetID(), ReturnSpecs.Name(), ReturnSpecs.Price(), ReturnSpecs.Quantity(), ReturnSpecs.OrderCount(), ReturnSpecs.Categories()));
-              }
+          /*  if (CheckUserChoice.IncludeSpecName() && CheckUserChoice.IncludeSpecPrice() && CheckUserChoice.IncludeSpecCategories() && CheckUserChoice.IncludeSpecOrderCount() && CheckUserChoice.IncludeSpecQuantity())
+            {
+                ProductDb.TemporalProducts.Add(new Product(ReturnSpecs.GetID(), ReturnSpecs.Name(), ReturnSpecs.Price(), ReturnSpecs.Quantity(), ReturnSpecs.OrderCount(), ReturnSpecs.Categories()));
+            }
 
-              foreach (var Specs in ProductDb.TemporalProducts)
-              {
-                  Console.WriteLine($"{Specs.Id} | {Specs.Name} | {Specs.Price} {Specs.Category} | {Specs.Quantity} | {Specs.OrderCount}");
-                  Console.WriteLine();
-              }*/
+            foreach (var Specs in ProductDb.TemporalProducts)
+            {
+                Console.WriteLine($"{Specs.Id} | {Specs.Name} | {Specs.Price} {Specs.Category} | {Specs.Quantity} | {Specs.OrderCount}");
+                Console.WriteLine();
+            }*/
 
 
             var products = new List<dynamic>();
-            string Name = Console.ReadLine() ?? string.Empty;
             // Add products to the collection
             dynamic product = new ExpandoObject();
-            product.Name = Name ?? "";
-            product.Price = ReturnSpecs.Price();
+            if (CheckUserChoice.IncludeSpecName()) { product.Name = ReturnSpecs.Name(); } else { product.Name = ""; }
+            if (CheckUserChoice.IncludeSpecPrice()) { product.Price = ReturnSpecs.Price(); }else { product.Price = null; }
+            if (CheckUserChoice.IncludeSpecQuantity()) { product.Quantity = ReturnSpecs.Quantity(); }else { product.Quantity = null; }
+            if(CheckUserChoice.IncludeSpecOrderCount()) { product.OrderCount = ReturnSpecs.OrderCount(); }else{product.OrderCount = null;}
+            if(CheckUserChoice.IncludeSpecCategories()) { product.Category = ReturnSpecs.Categories(); } else { product.Category = null; }
             products.Add(product);
 
             // Access the properties of a product
-            dynamic firstProduct = products[0];
-            Console.WriteLine("Name: " + firstProduct.Name);
-            Console.WriteLine("Price: " + firstProduct.Price);
-
-            // Add a new property to a product
-            firstProduct.Discount = 0.1;
-            Console.WriteLine("Discount: " + firstProduct.Discount);
-
-
-          
+            dynamic Specs = products[0];
+            Console.WriteLine($"Name: {Specs.Name}");
+            Console.WriteLine($"Price: {Specs.Price}");
+            Console.WriteLine($"OrderCount: {Specs.OrderCount}");
+            Console.WriteLine($"Quantity: {Specs.Quantity}");
+            Console.WriteLine($"Category: {Specs.Category}");
         }
     }
 }
