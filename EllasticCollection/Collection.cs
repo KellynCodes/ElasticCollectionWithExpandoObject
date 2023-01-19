@@ -33,18 +33,6 @@ namespace ElasticCollection.Domain
         }
         public static void SelectProductSpecsToView()
         {
-          /*  if (CheckUserChoice.IncludeSpecName() && CheckUserChoice.IncludeSpecPrice() && CheckUserChoice.IncludeSpecCategories() && CheckUserChoice.IncludeSpecOrderCount() && CheckUserChoice.IncludeSpecQuantity())
-            {
-                ProductDb.TemporalProducts.Add(new Product(ReturnSpecs.GetID(), ReturnSpecs.Name(), ReturnSpecs.Price(), ReturnSpecs.Quantity(), ReturnSpecs.OrderCount(), ReturnSpecs.Categories()));
-            }
-
-            foreach (var Specs in ProductDb.TemporalProducts)
-            {
-                Console.WriteLine($"{Specs.Id} | {Specs.Name} | {Specs.Price} {Specs.Category} | {Specs.Quantity} | {Specs.OrderCount}");
-                Console.WriteLine();
-            }*/
-
-
             var products = new List<dynamic>();
             // Add products to the collection
             dynamic product = new ExpandoObject();
