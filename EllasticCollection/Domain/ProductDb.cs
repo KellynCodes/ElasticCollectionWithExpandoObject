@@ -11,6 +11,6 @@ namespace EllasticCollection.Domain
             new Product(id: "2", name: "Hp 2050", price: 50000.00m, quantity: 1, orderCount: 2, category: "Fairly used." ),
         };
 
-        public static IList<Product> TemporalProducts { get; set; } = new List<Product>();
+        public static IList<dynamic> DynamicProducts { get; set; } = new List<dynamic>();
     }
 }

@@ -1,8 +1,6 @@
 ﻿using ElasticCollection.Utility;
 using EllasticCollection.Domain;
-using EllasticCollection.Models;
 using System;
-using System.Collections.Generic;
 using System.Dynamic;
 
 
@@ -10,18 +8,6 @@ namespace ElasticCollection.Domain
 {
     public class Collection
     {
-        //class
-
-
-        //digits
-        public static decimal _emptyDecimal = 0;
-        public static int _emptyInt = 0;
-        public static long _emptyLong = 0;
-
-        //strings
-        public static string _name = string.Empty;
-        public static string _category = string.Empty;
-
         public static void ViewAllProductSpecs()
         {
             foreach (var Specs in ProductDb.ProductSpec)
@@ -33,7 +19,6 @@ namespace ElasticCollection.Domain
         }
         public static void SelectProductSpecsToView()
         {
-            var products = new List<dynamic>();
             // Add products to the collection
             dynamic product = new ExpandoObject();
             if (CheckUserChoice.IncludeSpecName()) { product.Name = ReturnSpecs.Name(); } else { product.Name = ""; }
@@ -41,10 +26,10 @@ namespace ElasticCollection.Domain
             if (CheckUserChoice.IncludeSpecQuantity()) { product.Quantity = ReturnSpecs.Quantity(); }else { product.Quantity = null; }
             if(CheckUserChoice.IncludeSpecOrderCount()) { product.OrderCount = ReturnSpecs.OrderCount(); }else{product.OrderCount = null;}
             if(CheckUserChoice.IncludeSpecCategories()) { product.Category = ReturnSpecs.Categories(); } else { product.Category = null; }
-            products.Add(product);
+            ProductDb.DynamicProducts.Add(product);
 
             // Access the properties of a product
-            dynamic Specs = products[0];
+            dynamic Specs = ProductDb.DynamicProducts[0];
             Console.WriteLine($"Name: {Specs.Name}");
             Console.WriteLine($"Price: {Specs.Price}");
             Console.WriteLine($"OrderCount: {Specs.OrderCount}");
