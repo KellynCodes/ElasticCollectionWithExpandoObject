@@ -7,4 +7,4 @@ Application.Start();
     Products.Name = product.Name;
     Products.Category = product.Category;
     Console.WriteLine($"ID: {Products.Name}, Category: {Products.Category}");
-}*/
+*/
